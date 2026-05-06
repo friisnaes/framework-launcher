@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Frameworks og digitale værktøjer fra Thomas Friisnæs — Personal Excellence Partner. Karakter · Disciplin · Klarhed.">
+<meta property="og:title" content="Frameworks · Friisnæs">
+<meta property="og:description" content="Et samlet bibliotek af digitale frameworks til ledelse, eksekvering og refleksion.">
+<title>Frameworks · Friisnæs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:    #0C1829;
+    --navy-2:  #14243D;
+    --navy-3:  #253D66;
+    --gold:    #C9A84C;
+    --gold-2:  #E2C06A;
+    --cream:   #F5F1E8;
+    --cream-2: #ECE6D6;
+    --ink:     #1A1A1A;
+    --muted:   #6B6B6B;
+    --muted-2: #9A9A9A;
+    --line:    rgba(12, 24, 41, 0.08);
+    --line-2:  rgba(12, 24, 41, 0.14);
+    --live:    #4A7C59;
+    --demo:    #B47A2A;
+    --pending: #8C8C85;
+  }
+
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+  em { font-style: italic; color: var(--navy); }
+
+  /* ─── HEADER ─────────────────────────────────────────────── */
+  header.hero {
+    padding: 64px 32px 56px;
+    border-bottom: 1px solid var(--line-2);
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  header.hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 40%; height: 4px;
+    background: linear-gradient(90deg, transparent, var(--gold) 40%, var(--gold-2));
+  }
+  .hero-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 48px;
+    align-items: end;
+  }
+  .brand {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--navy-3);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .brand .ii { color: var(--gold); font-style: italic; letter-spacing: 0; }
+  h1.hero-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(44px, 6vw, 72px);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+    margin-bottom: 20px;
+  }
+  h1.hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-lede {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 580px;
+    line-height: 1.65;
+  }
+  .hero-tag {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-left: 1px solid var(--gold);
+    padding-left: 16px;
+    white-space: nowrap;
+    align-self: end;
+    margin-bottom: 6px;
+  }
+
+  /* ─── NAV ─────────────────────────────────────────────────── */
+  nav.section-nav {
+    background: var(--cream);
+    border-bottom: 1px solid var(--line);
+    padding: 18px 32px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: rgba(245, 241, 232, 0.92);
+  }
+  .nav-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 13px;
+  }
+  .nav-inner .label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .nav-inner a {
+    color: var(--navy);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+  }
+  .nav-inner a:hover {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* ─── MAIN ────────────────────────────────────────────────── */
+  main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 56px 32px 88px;
+  }
+
+  section.cat {
+    margin-bottom: 64px;
+  }
+  .cat-header {
+    margin-bottom: 28px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 18px;
+    align-items: baseline;
+  }
+  .cat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold);
+    font-size: 22px;
+    letter-spacing: 0.02em;
+  }
+  .cat-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: var(--navy);
+    font-size: 28px;
+    letter-spacing: -0.01em;
+  }
+  .cat-meta {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+  }
+  .cat-lede {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 640px;
+    margin-bottom: 28px;
+    line-height: 1.65;
+  }
+
+  /* ─── CARD GRID ───────────────────────────────────────────── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    display: block;
+    background: #fff;
+    border: 1px solid var(--line-2);
+    border-radius: 4px;
+    padding: 22px 24px 20px;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    transition: all 0.22s ease;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 0;
+    background: var(--gold);
+    transition: width 0.22s ease;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: var(--navy-3);
+    box-shadow: 0 8px 24px rgba(12, 24, 41, 0.08);
+  }
+  .card:hover::before { width: 3px; }
+  .card.pending {
+    background: rgba(255, 255, 255, 0.5);
+    cursor: default;
+    opacity: 0.78;
+  }
+  .card.pending:hover {
+    transform: none;
+    border-color: var(--line-2);
+    box-shadow: none;
+  }
+  .card.pending:hover::before { width: 0; }
+
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .card-tag { color: var(--muted-2); font-weight: 500; }
+  .badge {
+    padding: 3px 9px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+  }
+  .badge.live    { background: rgba(74, 124, 89, 0.12);  color: var(--live); }
+  .badge.demo    { background: rgba(180, 122, 42, 0.12); color: var(--demo); }
+  .badge.pending { background: rgba(140, 140, 133, 0.14); color: var(--pending); }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.18;
+    margin-bottom: 10px;
+    letter-spacing: -0.005em;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .card-arrow {
+    font-size: 13px;
+    color: var(--gold);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: transform 0.22s;
+    display: inline-block;
+  }
+  .card:hover .card-arrow { transform: translateX(4px); }
+  .card.pending .card-arrow {
+    color: var(--muted-2);
+  }
+
+  /* ─── FOOTER ──────────────────────────────────────────────── */
+  footer {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 56px 32px 40px;
+    margin-top: 24px;
+  }
+  .footer-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 48px;
+    align-items: end;
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 500;
+  }
+  .footer-brand em { color: var(--gold); }
+  .footer-tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: rgba(245, 241, 232, 0.72);
+    font-size: 15px;
+    margin-top: 4px;
+  }
+  .footer-meta {
+    text-align: right;
+    font-size: 12px;
+    color: rgba(245, 241, 232, 0.55);
+    line-height: 1.7;
+  }
+  .footer-meta a {
+    color: var(--gold-2);
+    text-decoration: none;
+  }
+  .footer-meta a:hover { text-decoration: underline; }
+
+  @media (max-width: 720px) {
+    header.hero { padding: 48px 24px 40px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 28px; }
+    .hero-tag { border-left: none; padding-left: 0; border-top: 1px solid var(--gold); padding-top: 12px; align-self: start; }
+    nav.section-nav { padding: 14px 20px; }
+    .nav-inner { gap: 16px; font-size: 12.5px; }
+    main { padding: 40px 20px 64px; }
+    .cat-header { grid-template-columns: auto 1fr; }
+    .cat-meta { display: none; }
+    .cat-title { font-size: 24px; }
+    footer { padding: 40px 24px 32px; }
+    .footer-inner { grid-template-columns: 1fr; gap: 24px; }
+    .footer-meta { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="brand">Fr<span class="ii">ii</span>snæs</div>
+      <h1 class="hero-title">Frameworks &amp; <em>værktøjer.</em></h1>
+      <p class="hero-lede">
+        Et samlet bibliotek af digitale frameworks udviklet over år af klientarbejde med C-level ledere, ejerledere og direktioner.
+        Hvert værktøj er bygget til en konkret samtale eller beslutning — ikke til at imponere.
+      </p>
+    </div>
+    <div class="hero-tag">Karakter · Disciplin · Klarhed</div>
+  </div>
+</header>
+
+<nav class="section-nav">
+  <div class="nav-inner">
+    <span class="label">Hop til:</span>
+    <a href="#metode">Metode</a>
+    <a href="#brand">Brand</a>
+    <a href="#coaching">Coaching</a>
+    <a href="#diagnostik">Diagnostik</a>
+    <a href="#community">Community</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ═══ STRATEGY EXECUTION OBSERVATORY ═══ -->
+  <section class="cat" id="metode">
+    <div class="cat-header">
+      <span class="cat-num">i.</span>
+      <h2 class="cat-title">Strategy Execution Observatory™</h2>
+      <span class="cat-meta">Proprietær metode</span>
+    </div>
+    <p class="cat-lede">
+      Tre-modul-system til diagnose og governance af strategisk eksekvering. Måler organisatorisk friktion, momentum og strategisk sundhed via tre indekser — SSI, OFI og EMI. I pilot hos udvalgte klienter.
+    </p>
+    <div class="grid">
+      <a class="card" href="https://friisnaes.github.io/strategy-admin/" target="_blank" rel="noopener">
+        <div class="card-meta"><span class="card-tag">Modul</span><span class="badge live">Live</span></div>
+        <h3 class="card-title">Admin Control Tower</h3>
+        <p class="card-desc">Aggregering, beregning og publicering. Kontroltårnet hvor data bliver til SSI, OFI og EMI med fuldt audit-spor.</p>
+        <span class="card-arrow">Åbn modul →</span>
+      </a>
+      <a class="card" href="https://friisnaes.github.io/strategy-mgt/" target="_blank" rel="noopener">
+        <div class="card-meta"><span class="card-tag">Modul</span><span class="badge live">Live</span></div>
+        <h3 class="card-title">Executive View</h3>
+        <p class="card-desc">Read-only directional intelligence til direktion og bestyrelse. Snapshot, drivers og prioriterede ledelseshandlinger.</p>
+        <span class="card-arrow">Åbn modul →</span>
+      </a>
+      <a class="card" href="https://friisnaes.github.io/strategy-data/" target="_blank" rel="noopener">
+        <div class="card-meta"><span class="card-tag">Modul</span><span class="badge live">Live</span></div>
+        <h3 class="card-title">Signal Capture</h3>
+        <p class="card-desc">Månedlig dataindsamling fra projektejere. Beslutninger, friktioner, risici, initiativer, kapacitet — alt strukturelt.</p>
+        <span class="card-arrow">Åbn modul →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ BRAND & PRACTICE ═══ -->
+  <section class="cat" id="brand">
+    <div class="cat-header">
+      <span class="cat-num">ii.</span>
+      <h2 class="cat-title">Brand &amp; praksis</h2>
+      <span class="cat-meta">Friisnæs · Personal Excellence</span>
+    </div>
+    <p class="cat-lede">
+      Forretningens ansigt udadtil — hovedside, metodeside og direkte vej til en samtale.
+    </p>
+    <div class="grid">
+      <a class="card" href="https://www.friisnaes.com/" target="_blank" rel="noopener">
+        <div class="card-meta"><span class="card-tag">Praksis</span><span class="badge live">Live</span></div>
+        <h3 class="card-title">Friisnæs.com</h3>
+        <p class="card-desc">Executive coaching, retainer-modeller og bog-udgivelser. Den primære indgang til samarbejde.</p>
+        <span class="card-arrow">Åbn site →</span>
+      </a>
+      <a class="card" href="https://www.friisnaes.com/seg.html" target="_blank" rel="noopener">
+        <div class="card-meta"><span class="card-tag">Metode</span><span class="badge live">Live</span></div>
+        <h3 class="card-title">Strategy Execution Governance</h3>
+        <p class="card-desc">Metodeside for SEG — det governance-lag der lukker gabet mellem strategi og eksekvering.</p>
+        <span class="card-arrow">Læs om SEG →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ COACHING FRAMEWORKS ═══ -->
+  <section class="cat" id="coaching">
+    <div class="cat-header">
+      <span class="cat-num">iii.</span>
+      <h2 class="cat-title">Coaching-frameworks</h2>
+      <span class="cat-meta">Refleksion · Dialog · Udvikling</span>
+    </div>
+    <p class="cat-lede">
+      Struktureret refleksion til ledere og medarbejdere. Hvert framework er otte moduler dybt — ikke et hurtigt assessment, men et faktisk gennemløb.
+    </p>
+    <div class="grid">
+      <a class="card" href="https://friisnaes.github.io/kvaliteten-i-ledelsesdialoger/" target="_blank" rel="noopener">
+        <div class="card-meta"><span class="card-tag">Hub · 4 frameworks</span><span class="badge live">Live</span></div>
+        <h3 class="card-title">Kvaliteten i ledelsesdialoger</h3>
+        <p class="card-desc">Indgangen til de fire dialog-frameworks: 1:1, MUS leder, MUS medarbejder, den svære samtale.</p>
+        <span class="card-arrow">Åbn hub →</span>
+      </a>
+      <a class="card" href="https://friisnaes.github.io/den-gode-1-on-1/" target="_blank" rel="noopener">
+        <div class="card-meta"><span class="card-tag">Dialog</span><span class="badge live">Live</span></div>
+        <h3 class="card-title">Den gode 1:1</h3>
+        <p class="card-desc">Den løbende samtale mellem leder og medarbejder. Kadence, struktur, feedback og udvikling.</p>
+        <span class="card-arrow">Åbn framework →</span>
+      </a>
+      <a class="card" href="https://friisnaes.github.io/den-svaere-samtale/" target="_blank" rel="noopener">
+        <div class="card-meta"><span class="card-tag">Dialog</span><span class="badge live">Live</span></div>
+        <h3 class="card-title">Den svære samtale</h3>
+        <p class="card-desc">Samtaler der har størst konsekvens — og som oftest udskydes. Forberedelse, gennemførelse, læring.</p>
+        <span class="card-arrow">Åbn framework →</span>
+      </a>
+      <a class="card" href="https://friisnaes.github.io/den-gode-MUS-leder/" target="_blank" rel="noopener">
+        <div class="card-meta"><span class="card-tag">Dialog</span><span class="badge live">Live</span></div>
+        <h3 class="card-title">Den gode MUS — leder</h3>
+        <p class="card-desc">Lederens forberedelse til MUS. Samtaleteknik, feedback, udvikling, trivsel og opfølgning.</p>
+        <span class="card-arrow">Åbn framework →</span>
+      </a>
+      <a class="card" href="https://friisnaes.github.io/den-gode-MUS-medarbejder/" target="_blank" rel="noopener">
+        <div class="card-meta"><span class="card-tag">Dialog</span><span class="badge live">Live</span></div>
+        <h3 class="card-title">Den gode MUS — medarbejder</h3>
+        <p class="card-desc">Medarbejderens forberedelse. Selvrefleksion, feedbackmodtagelse, udvikling og karriereejerskab.</p>
+        <span class="card-arrow">Åbn framework →</span>
+      </a>
+      <div class="card pending">
+        <div class="card-meta"><span class="card-tag">Lederudvikling</span><span class="badge pending">Kommer</span></div>
+        <h3 class="card-title">Jeg er blevet leder</h3>
+        <p class="card-desc">For den nye leder. Identitetsskift, første 90 dage, autoritet uden formel magt.</p>
+        <span class="card-arrow">Under deploy</span>
+      </div>
+      <div class="card pending">
+        <div class="card-meta"><span class="card-tag">Lederudvikling</span><span class="badge pending">Kommer</span></div>
+        <h3 class="card-title">Sådan leder du din leder</h3>
+        <p class="card-desc">Mid-leder-rollen. Loyalitet opad, ansvar nedad, indflydelse vandret.</p>
+        <span class="card-arrow">Under deploy</span>
+      </div>
+      <div class="card pending">
+        <div class="card-meta"><span class="card-tag">Lederudvikling</span><span class="badge pending">Kommer</span></div>
+        <h3 class="card-title">Leders leder</h3>
+        <p class="card-desc">Senior-leder-perspektivet. At lede gennem andre ledere — og hvor det bryder sammen.</p>
+        <span class="card-arrow">Under deploy</span>
+      </div>
+      <div class="card pending">
+        <div class="card-meta"><span class="card-tag">Selvindsigt</span><span class="badge pending">Kommer</span></div>
+        <h3 class="card-title">ADHD-Kompasset</h3>
+        <p class="card-desc">Refleksionsværktøj knyttet til bogen <em>Ferrarimotor med cykelbremser</em>. ADHD som lederressource.</p>
+        <span class="card-arrow">Under deploy</span>
+      </div>
+      <div class="card pending">
+        <div class="card-meta"><span class="card-tag">Selvindsigt</span><span class="badge pending">Kommer</span></div>
+        <h3 class="card-title">Blinde Vinkler</h3>
+        <p class="card-desc">Struktureret refleksion over de mønstre du ikke selv ser — men dine omgivelser gør.</p>
+        <span class="card-arrow">Under deploy</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DIAGNOSTIK & VENTURES ═══ -->
+  <section class="cat" id="diagnostik">
+    <div class="cat-header">
+      <span class="cat-num">iv.</span>
+      <h2 class="cat-title">Diagnostik &amp; ventures</h2>
+      <span class="cat-meta">Selvstændige projekter</span>
+    </div>
+    <p class="cat-lede">
+      Diagnostiske værktøjer og selvstændige projekter — nogle af dem under egen brand.
+    </p>
+    <div class="grid">
+      <a class="card" href="https://friisnaes.github.io/blindspot-ai/" target="_blank" rel="noopener">
+        <div class="card-meta"><span class="card-tag">Eget ApS</span><span class="badge demo">Demo</span></div>
+        <h3 class="card-title">AI Opportunity Engine</h3>
+        <p class="card-desc">AI-readiness analyse for danske virksomheder. Otte dimensioner, scoring og handlingsplan. Selvstændigt selskab.</p>
+        <span class="card-arrow">Åbn site →</span>
+      </a>
+      <a class="card" href="https://friisnaes.github.io/unbiased-ish/" target="_blank" rel="noopener">
+        <div class="card-meta"><span class="card-tag">Medieanalyse</span><span class="badge live">Live</span></div>
+        <h3 class="card-title">Signal over Støj</h3>
+        <p class="card-desc">Sammenlign hvordan otte internationale nyhedskilder dækker de samme historier. Vinkler synliggjort.</p>
+        <span class="card-arrow">Åbn site →</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ COMMUNITY & PERSONAL ═══ -->
+  <section class="cat" id="community">
+    <div class="cat-header">
+      <span class="cat-num">v.</span>
+      <h2 class="cat-title">Community &amp; personlige projekter</h2>
+      <span class="cat-meta">Rotary · Golf</span>
+    </div>
+    <p class="cat-lede">
+      Frivillige projekter for Charlottenlund Rotary Klub og personlige hobby-værktøjer.
+    </p>
+    <div class="grid">
+      <a class="card" href="https://friisnaes.github.io/CRK-charity/" target="_blank" rel="noopener">
+        <div class="card-meta"><span class="card-tag">Rotary · Charity</span><span class="badge live">Live</span></div>
+        <h3 class="card-title">CRK Charity Golf</h3>
+        <p class="card-desc">Den årlige velgørenheds-turnering. Udsolgt 3 år i træk — 100% ubeskåret til velgørenhed.</p>
+        <span class="card-arrow">Åbn site →</span>
+      </a>
+      <a class="card" href="https://friisnaes.github.io/crk-charity-invoice/" target="_blank" rel="noopener">
+        <div class="card-meta"><span class="card-tag">Rotary · Drift</span><span class="badge live">Live</span></div>
+        <h3 class="card-title">CRK Charity — fakturering</h3>
+        <p class="card-desc">Faktura- og kreditnota-system for sponsor-driften. PDF-eksport, rykker-flow, audit-spor.</p>
+        <span class="card-arrow">Åbn værktøj →</span>
+      </a>
+      <a class="card" href="https://friisnaes.github.io/ts-golfregnskab/" target="_blank" rel="noopener">
+        <div class="card-meta"><span class="card-tag">Personligt</span><span class="badge live">Live</span></div>
+        <h3 class="card-title">TS Golfregnskab</h3>
+        <p class="card-desc">Personligt værktøj til at tracke runder, turnerings­resultater og statistik.</p>
+        <span class="card-arrow">Åbn værktøj →</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Fr<em>ii</em>snæs</div>
+      <div class="footer-tag">Karakter · Disciplin · Klarhed</div>
+    </div>
+    <div class="footer-meta">
+      Thomas Friisnæs — Personal Excellence Partner<br>
+      Holte Stationsvej 18 · 2840 Holte<br>
+      <a href="https://www.friisnaes.com/">friisnaes.com</a> · <a href="mailto:friisnaes@gmail.com">friisnaes@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
